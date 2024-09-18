@@ -22,6 +22,7 @@ if not redis_url:
     raise ValueError("REDIS_URL environment variable not set.")
 
 redis_client = redis.from_url(redis_url)
+
 @tasks.loop(seconds=4)
 async def process_bingo_queue():
     print("Processing queue...")
@@ -44,7 +45,14 @@ async def send_message_to_discord(player_name, message):
     if channel:
         player_id = await get_member_id(channel.guild, player_name)
         if player_id:
-            mention = f'<@{player_id}>'
+            # Use Redis to check if player has been mentioned
+            player_key = f"mentioned_player_{player_id}"
+            has_been_mentioned = redis_client.get(player_key)
+            if has_been_mentioned:
+                mention = ""  # No mention if already mentioned
+            else:
+                mention = f'<@{player_id}>'
+                redis_client.setex(player_key, 3600, "1")  # Set key with 1 hour expiration
             await channel.send(f'{mention} {message}')
             print(f"Message sent to channel {channel.id}: {mention} {message}")
         else:
