@@ -17,8 +17,11 @@ if not DISCORD_TOKEN:
     raise ValueError("DISCORD_TOKEN environment variable not set.")
 
 # Redis configuration
-redis_client = redis.StrictRedis(host='localhost', port=6379, db=0)
+redis_url = os.environ.get('REDIS_URL')
+if not redis_url:
+    raise ValueError("REDIS_URL environment variable not set.")
 
+redis_client = redis.from_url(redis_url)
 @tasks.loop(seconds=10)
 async def process_bingo_queue():
     print("Processing queue...")

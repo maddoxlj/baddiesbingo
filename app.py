@@ -8,8 +8,12 @@ app = Flask(__name__)
 socketio = SocketIO(app, async_mode='gevent', cors_allowed_origins="*")
 
 # Redis configuration
-redis_client = redis.StrictRedis(host='localhost', port=6379, db=0)
 
+redis_url = os.environ.get('REDIS_URL')
+if not redis_url:
+    raise ValueError("REDIS_URL environment variable not set.")
+
+redis_client = redis.from_url(redis_url)
 flask_app_url = os.environ.get('FLASK_APP_URL', 'http://localhost:5001')
 
 # Function to load bingo items from a text file
