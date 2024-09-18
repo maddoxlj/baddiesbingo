@@ -1,0 +1,42 @@
+[2024-09-17 17:48:22 -0600] [144271] [INFO] Starting gunicorn 23.0.0
+[2024-09-17 17:48:22 -0600] [144271] [INFO] Listening at: http://0.0.0.0:5000 (144271)
+[2024-09-17 17:48:22 -0600] [144271] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2024-09-17 17:48:23 -0600] [144278] [INFO] Booting worker with pid: 144278
+[2024-09-17 17:49:17 -0600] [144271] [INFO] Handling signal: term
+[2024-09-17 17:49:47 -0600] [144271] [INFO] Shutting down: Master
+[2024-09-17 17:50:47 -0600] [144872] [INFO] Starting gunicorn 23.0.0
+[2024-09-17 17:50:47 -0600] [144872] [INFO] Listening at: http://0.0.0.0:5000 (144872)
+[2024-09-17 17:50:47 -0600] [144872] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2024-09-17 17:50:47 -0600] [144886] [INFO] Booting worker with pid: 144886
+[2024-09-17 17:51:39 -0600] [144872] [INFO] Handling signal: term
+[2024-09-17 17:52:09 -0600] [144872] [INFO] Shutting down: Master
+[2024-09-17 17:52:59 -0600] [145445] [INFO] Starting gunicorn 23.0.0
+[2024-09-17 17:52:59 -0600] [145445] [INFO] Listening at: http://0.0.0.0:5000 (145445)
+[2024-09-17 17:52:59 -0600] [145445] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2024-09-17 17:52:59 -0600] [145452] [INFO] Booting worker with pid: 145452
+[2024-09-17 17:53:10 -0600] [145445] [INFO] Handling signal: term
+[2024-09-17 17:53:40 -0600] [145445] [INFO] Shutting down: Master
+[2024-09-17 17:55:04 -0600] [145985] [INFO] Starting gunicorn 23.0.0
+[2024-09-17 17:55:04 -0600] [145985] [INFO] Listening at: http://0.0.0.0:5000 (145985)
+[2024-09-17 17:55:04 -0600] [145985] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2024-09-17 17:55:04 -0600] [145991] [INFO] Booting worker with pid: 145991
+[2024-09-17 17:56:30 -0600] [145985] [INFO] Handling signal: term
+[2024-09-17 17:56:34 -0600] [146374] [INFO] Starting gunicorn 23.0.0
+[2024-09-17 17:56:34 -0600] [146374] [INFO] Listening at: http://0.0.0.0:5000 (146374)
+[2024-09-17 17:56:34 -0600] [146374] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2024-09-17 17:56:34 -0600] [146379] [INFO] Booting worker with pid: 146379
+[2024-09-17 17:57:00 -0600] [145985] [INFO] Shutting down: Master
+[2024-09-17 17:57:03 -0600] [146374] [INFO] Handling signal: term
+[2024-09-17 17:57:33 -0600] [146374] [INFO] Shutting down: Master
+[2024-09-17 17:58:00 -0600] [146751] [INFO] Starting gunicorn 23.0.0
+[2024-09-17 17:58:00 -0600] [146751] [INFO] Listening at: http://0.0.0.0:5000 (146751)
+[2024-09-17 17:58:00 -0600] [146751] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2024-09-17 17:58:00 -0600] [146757] [INFO] Booting worker with pid: 146757
+[2024-09-17 18:00:00 -0600] [146751] [INFO] Handling signal: term
+[2024-09-17 18:00:05 -0600] [147275] [INFO] Starting gunicorn 23.0.0
+[2024-09-17 18:00:05 -0600] [147275] [INFO] Listening at: http://0.0.0.0:5000 (147275)
+[2024-09-17 18:00:05 -0600] [147275] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2024-09-17 18:00:05 -0600] [147281] [INFO] Booting worker with pid: 147281
+[2024-09-17 18:00:30 -0600] [146751] [INFO] Shutting down: Master
+[2024-09-17 18:01:03 -0600] [147275] [INFO] Handling signal: term
+[2024-09-17 18:01:33 -0600] [147275] [INFO] Shutting down: Master

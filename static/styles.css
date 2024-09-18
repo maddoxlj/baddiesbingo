@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url("bricks.jpg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    color: powderblue;
+    font-size: 50px;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: Black;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    margin-bottom: 40px;
+}
+
+#nameForm {
+    margin-bottom: 20px;
+}
+
+#playerName {
+    border-radius: 12px;
+    border: 2px solid #ecf0f1;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    width: 80%;
+    max-width: 300px;
+    color: #2c3e50;
+    background-color: #ecf0f1;
+    text-align: center;
+    color: #000000;
+}
+
+#playerName:focus {
+    border-color: #3498db;
+}
+
+#playerName::placeholder {
+    color: #c2c2c2; /* Dark grey color for the placeholder */
+}
+
+button {
+    border-radius: 12px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button:focus {
+    outline: none;
+}
+
+.bingo-card {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.bingo-cell {
+    background-color: #ffffff;
+    color: black;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    padding: 3px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 50);
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.bingo-cell:hover {
+    background-color: rgb(167, 235, 135);
+}
+
+.bingo-cell.clicked {
+    background-color: #32CD32;
+}

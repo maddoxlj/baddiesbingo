@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baddie Bingo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        let completedRows = [];
+        let completedColumns = [];
+        let mainDiagonalCompleted = false;
+        let antiDiagonalCompleted = false;
+
+        let playerName = '';
+        let markedCells = [];
+        let bingoCells = [];
+        let lastMarkedCell = null;
+        let allBingos = [];
+        let reportedBingos = new Set(); // Track reported Bingos
+
+        // Initialize SocketIO client
+        const socket = io();
+
+        // Debugging socket connection
+        socket.on('connect', () => {
+            console.log('Socket.IO connected');
+        });
+
+        socket.on('connect_error', (err) => { 
+            console.error('Connection Error:', err); 
+        });
+
+        // Function to handle the name submission
+        function submitName() {
+            const nameInput = document.getElementById('playerName');
+            playerName = sanitizeName(nameInput.value.trim());
+
+            if (isValidName(playerName)) {
+                document.getElementById('nameForm').style.display = 'none';
+                document.getElementById('bingoBoard').style.display = 'block'; // Show the bingo board
+            } else {
+                alert('Please enter a valid name. Ensure it follows Discord name rules and does not contain restricted substrings.');
+            }
+        }
+
+        // Sanitize name by removing leading, trailing, and excessive internal whitespace
+        function sanitizeName(name) {
+            // Replace HTML special characters with their entity equivalents
+            const div = document.createElement('div');
+            div.innerText = name;
+            return div.innerHTML.replace(/\s+/g, ' ').trim();
+        }
+
+        // Validate name based on Discord's rules
+        function isValidName(name) {
+            const restrictedSubstrings = ['@', '#', ':', '```', 'discord', 'everyone', 'here'];
+            if (name.length < 2 || name.length > 32) {
+                return false;
+            }
+            if (restrictedSubstrings.some(substring => name.toLowerCase().includes(substring))) {
+                return false;
+            }
+            return true;
+        }
+
+        // Function to toggle the color of a bingo cell when clicked
+        function toggleColor(cell) {
+            if (cell.classList.contains('clicked')) {
+                // If cell is already clicked, undo it
+                cell.classList.remove('clicked');
+                markedCells = markedCells.filter(c => c !== cell);
+                bingoCells = bingoCells.filter(c => c !== cell);
+                lastMarkedCell = markedCells[markedCells.length - 1] || null;
+                checkBingo();
+            } else {
+                // If cell is not clicked, add it
+                cell.classList.add('clicked');
+                markedCells.push(cell);
+                lastMarkedCell = cell;
+                checkBingo();
+            }
+        }
+
+        // Function to check if there is a bingo (5 in a row)
+        function checkBingo() {
+            const gridSize = 5;
+            const cells = document.querySelectorAll('.bingo-cell');
+            const cellMatrix = [];
+
+            // Create a 2D array from the cell elements
+            for (let i = 0; i < gridSize; i++) {
+                cellMatrix[i] = Array.from(cells).slice(i * gridSize, (i + 1) * gridSize);
+            }
+
+            // Reset completed status and bingoCells
+            completedRows = [];
+            completedColumns = [];
+            mainDiagonalCompleted = false;
+            antiDiagonalCompleted = false;
+            bingoCells = [];
+
+            // Check rows, columns, and diagonals
+            const rowsBingo = checkRows(cellMatrix);
+            const columnsBingo = checkColumns(cellMatrix);
+            const diagonalsBingo = checkDiagonals(cellMatrix);
+
+            // Collect all new Bingos
+            const newBingos = [...rowsBingo, ...columnsBingo, ...diagonalsBingo];
+            const bingosToReport = newBingos.filter(bingo => !reportedBingos.has(bingo));
+
+            if (bingosToReport.length > 0) {
+                const bingoMessage = bingosToReport.join('\n');
+                const confirmBingo = confirm(`You've marked cells with contents: \n ~ ${bingoCells.map(cell => cell.textContent).join('\n ~ ')}\n Do you want to submit bingo?\n(Cheaters Beware!)`);
+
+                if (confirmBingo) {
+                    // Notify the server that a bingo was achieved
+                    const fullBingoMessage = `has achieved bingo:\n ${bingoMessage}\n Congratulations!`;
+                    console.log('Bingo confirmed. Emitting event:', { name: playerName, message: fullBingoMessage });
+                    socket.emit('bingo', { name: playerName, message: fullBingoMessage, cells: bingoCells.map(cell => cell.textContent).join('\n ~ ') });
+                    // Add new bingos to reportedBingos set
+                    bingosToReport.forEach(bingo => reportedBingos.add(bingo));
+                } else {
+                    // Undo only the last marked cell
+                    if (lastMarkedCell) {
+                        lastMarkedCell.classList.remove('clicked');
+                        markedCells = markedCells.filter(cell => cell !== lastMarkedCell);
+                        bingoCells = bingoCells.filter(cell => cell !== lastMarkedCell);
+                        lastMarkedCell = markedCells[markedCells.length - 1] || null;
+                    }
+                }
+            }
+        }
+
+        function checkRows(matrix) {
+            let bingoes = [];
+            for (let i = 0; i < matrix.length; i++) {
+                if (!completedRows.includes(i) && matrix[i].every(cell => cell.classList.contains('clicked'))) {
+                    completedRows.push(i);
+                    bingoCells.push(...matrix[i].filter(cell => cell.classList.contains('clicked')));
+                    bingoes.push(`Row ${i + 1}: ${matrix[i].map(cell => cell.textContent).join(' | ')}`);
+                }
+            }
+            return bingoes;
+        }
+
+        function checkColumns(matrix) {
+            let bingoes = [];
+            for (let i = 0; i < matrix.length; i++) {
+                let column = matrix.map(row => row[i]);
+                if (!completedColumns.includes(i) && column.every(cell => cell.classList.contains('clicked'))) {
+                    completedColumns.push(i);
+                    bingoCells.push(...column.filter(cell => cell.classList.contains('clicked')));
+                    bingoes.push(`Column ${i + 1}: ${column.map(cell => cell.textContent).join(' | ')}`);
+                }
+            }
+            return bingoes;
+        }
+
+        function checkDiagonals(matrix) {
+            let bingoes = [];
+
+            // Check the main diagonal
+            let mainDiagonal = matrix.map((row, i) => row[i]);
+            if (!mainDiagonalCompleted && mainDiagonal.every(cell => cell.classList.contains('clicked'))) {
+                mainDiagonalCompleted = true;
+                bingoCells.push(...mainDiagonal.filter(cell => cell.classList.contains('clicked')));
+                bingoes.push(`X Diagonal: ${mainDiagonal.map(cell => cell.textContent).join(' | ')}`);
+            }
+
+            // Check the anti-diagonal
+            let antiDiagonal = matrix.map((row, i) => row[matrix.length - i - 1]);
+            if (!antiDiagonalCompleted && antiDiagonal.every(cell => cell.classList.contains('clicked'))) {
+                antiDiagonalCompleted = true;
+                bingoCells.push(...antiDiagonal.filter(cell => cell.classList.contains('clicked')));
+                bingoes.push(`-X Diagonal: ${antiDiagonal.map(cell => cell.textContent).join(' | ')}`);
+            }
+
+            return bingoes;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Baddie Bingo</h1>
+        <div id="nameForm">
+            <input type="text" id="playerName" placeholder="Discord Name">
+            <button onclick="submitName()">Begin!</button>
+        </div>
+        <div id="bingoBoard" style="display: none;">
+            <div class="bingo-card">
+                {% for item in card %}
+                    <div class="bingo-cell" onclick="toggleColor(this)">{{ item }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

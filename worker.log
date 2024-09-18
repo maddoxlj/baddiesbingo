@@ -1,0 +1,183 @@
+[2024-09-17 17:55:04] [INFO    ] discord.client: logging in using static token
+[2024-09-17 17:55:05] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: d0234a8d117402b19bf3f9f0e367327a).
+[2024-09-17 17:56:35] [INFO    ] discord.client: logging in using static token
+[2024-09-17 17:56:36] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: a3a73f758c0adf36c3fbc6967b3b1a67).
+[2024-09-17 17:58:01] [INFO    ] discord.client: logging in using static token
+[2024-09-17 17:58:01] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 481477a35de3355cd319c8562904ea02).
+[2024-09-17 17:58:53] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 64, in <module>
+    client.run(DISCORD_TOKEN)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/client.py", line 869, in run
+    asyncio.run(runner())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/ext/tasks/__init__.py", line 241, in _loop
+    await self.coro(*args, **kwargs)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 25, in process_bingo_queue
+    player_name, message = queue.get()
+  File "/usr/lib/python3.10/queue.py", line 171, in get
+    self.not_empty.wait()
+  File "/usr/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+
+[2024-09-17 17:59:03] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 64, in <module>
+    client.run(DISCORD_TOKEN)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/client.py", line 869, in run
+    asyncio.run(runner())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/ext/tasks/__init__.py", line 241, in _loop
+    await self.coro(*args, **kwargs)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 25, in process_bingo_queue
+    player_name, message = queue.get()
+  File "/usr/lib/python3.10/queue.py", line 171, in get
+    self.not_empty.wait()
+  File "/usr/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+
+[2024-09-17 17:59:13] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 30 seconds.
+Loop thread traceback (most recent call last):
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 64, in <module>
+    client.run(DISCORD_TOKEN)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/client.py", line 869, in run
+    asyncio.run(runner())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/ext/tasks/__init__.py", line 241, in _loop
+    await self.coro(*args, **kwargs)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 25, in process_bingo_queue
+    player_name, message = queue.get()
+  File "/usr/lib/python3.10/queue.py", line 171, in get
+    self.not_empty.wait()
+  File "/usr/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+
+[2024-09-17 17:59:23] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 40 seconds.
+Loop thread traceback (most recent call last):
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 64, in <module>
+    client.run(DISCORD_TOKEN)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/client.py", line 869, in run
+    asyncio.run(runner())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/ext/tasks/__init__.py", line 241, in _loop
+    await self.coro(*args, **kwargs)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 25, in process_bingo_queue
+    player_name, message = queue.get()
+  File "/usr/lib/python3.10/queue.py", line 171, in get
+    self.not_empty.wait()
+  File "/usr/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+
+[2024-09-17 17:59:33] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 50 seconds.
+Loop thread traceback (most recent call last):
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 64, in <module>
+    client.run(DISCORD_TOKEN)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/client.py", line 869, in run
+    asyncio.run(runner())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/ext/tasks/__init__.py", line 241, in _loop
+    await self.coro(*args, **kwargs)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 25, in process_bingo_queue
+    player_name, message = queue.get()
+  File "/usr/lib/python3.10/queue.py", line 171, in get
+    self.not_empty.wait()
+  File "/usr/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+
+[2024-09-17 17:59:43] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 60 seconds.
+Loop thread traceback (most recent call last):
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 64, in <module>
+    async def on_ready():
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/client.py", line 869, in run
+    asyncio.run(runner())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/ext/tasks/__init__.py", line 241, in _loop
+    await self.coro(*args, **kwargs)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 25, in process_bingo_queue
+    while True:
+  File "/usr/lib/python3.10/queue.py", line 171, in get
+    self.not_empty.wait()
+  File "/usr/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+
+[2024-09-17 17:59:53] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 70 seconds.
+Loop thread traceback (most recent call last):
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 64, in <module>
+    async def on_ready():
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/client.py", line 869, in run
+    asyncio.run(runner())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/ljmadd/lib/python3.10/site-packages/discord/ext/tasks/__init__.py", line 241, in _loop
+    await self.coro(*args, **kwargs)
+  File "/mnt/c/Users/liam/OneDrive/Desktop/2024 Notes/Data/PythonExp/appstuff/bot.py", line 25, in process_bingo_queue
+    while True:
+  File "/usr/lib/python3.10/queue.py", line 171, in get
+    self.not_empty.wait()
+  File "/usr/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+
+[2024-09-17 18:00:05] [INFO    ] discord.client: logging in using static token
+[2024-09-17 18:00:09] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 317e54e4218deef27eda404c184c7fde).
