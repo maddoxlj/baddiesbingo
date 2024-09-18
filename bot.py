@@ -22,7 +22,7 @@ if not redis_url:
     raise ValueError("REDIS_URL environment variable not set.")
 
 redis_client = redis.from_url(redis_url)
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=4)
 async def process_bingo_queue():
     print("Processing queue...")
     while True:
