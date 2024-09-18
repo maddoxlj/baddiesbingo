@@ -166,7 +166,7 @@
             if (!mainDiagonalCompleted && mainDiagonal.every(cell => cell.classList.contains('clicked'))) {
                 mainDiagonalCompleted = true;
                 bingoCells.push(...mainDiagonal.filter(cell => cell.classList.contains('clicked')));
-                bingoes.push(`X Diagonal: ${mainDiagonal.map(cell => cell.textContent).join(' | ')}`);
+                bingoes.push(`-X Diagonal: ${mainDiagonal.map(cell => cell.textContent).join(' | ')}`);
             }
 
             // Check the anti-diagonal
@@ -174,7 +174,7 @@
             if (!antiDiagonalCompleted && antiDiagonal.every(cell => cell.classList.contains('clicked'))) {
                 antiDiagonalCompleted = true;
                 bingoCells.push(...antiDiagonal.filter(cell => cell.classList.contains('clicked')));
-                bingoes.push(`-X Diagonal: ${antiDiagonal.map(cell => cell.textContent).join(' | ')}`);
+                bingoes.push(`X Diagonal: ${antiDiagonal.map(cell => cell.textContent).join(' | ')}`);
             }
 
             return bingoes;

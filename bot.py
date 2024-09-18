@@ -12,7 +12,7 @@ intents.members = True
 client = discord.Client(intents=intents)
 
 # Discord token from environment variables
-DISCORD_TOKEN = 'MTI4NDkxNjUyNjg0NzM2NTIxMA.GGC4xx.F28StS9LOCxnd0GkwteVhNX_6HOTlALBb25ERA'#os.environ.get('DISCORD_TOKEN')
+DISCORD_TOKEN = os.environ.get('DISCORD_TOKEN')
 if not DISCORD_TOKEN:
     raise ValueError("DISCORD_TOKEN environment variable not set.")
 
