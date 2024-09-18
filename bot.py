@@ -1,15 +1,13 @@
 import discord
 import asyncio
 import os
-from discord.ext import tasks, commands
+from discord.ext import tasks
 import redis
 
 # Define intents and create an instance of a client with intents
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
-
-bot = commands.Bot(command_prefix='==', intents=intents)
 
 client = discord.Client(intents=intents)
 
@@ -80,23 +78,6 @@ async def get_member_id(guild, player_name):
 async def reset_mentioned_players():
     print("Resetting mentioned players list...")
     redis_client.delete(mentioned_players_key)  # Clear the mentioned players set
-
-@bot.command()
-async def upload_bingo_items(ctx):
-    #Command to upload bingo items from a .txt file
-    if len(ctx.message.attachments) == 0:
-        await ctx.send("Please attach a .txt file with bingo items.")
-        return
-    attachment = ctx.message.attachments[0]
-    if not attachment.filename.endswith('.txt'):
-        await ctx.send("Please attach a .txt file.")
-        return
-    file_content = await attachment.read()
-    with open('bingo_items.txt', 'wb') as file:
-        file.write(file_content)
-    
-    await ctx.send("Bingo items have been updated.")
-
 
 @client.event
 async def on_ready():
