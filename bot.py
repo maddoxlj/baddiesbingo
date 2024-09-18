@@ -74,7 +74,7 @@ async def get_member_id(guild, player_name):
             return member.id
     return None
 
-@tasks.loop(hours=1)
+@tasks.loop(minutes=1)
 async def reset_mentioned_players():
     print("Resetting mentioned players list...")
     redis_client.delete(mentioned_players_key)  # Clear the mentioned players set
