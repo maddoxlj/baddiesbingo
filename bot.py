@@ -11,17 +11,17 @@ intents.members = True
 
 client = discord.Client(intents=intents)
 
-# Discord token from environment variables
+# Discord token and Redis configuration from environment variables
 DISCORD_TOKEN = os.environ.get('DISCORD_TOKEN')
 if not DISCORD_TOKEN:
     raise ValueError("DISCORD_TOKEN environment variable not set.")
 
-# Redis configuration
 redis_url = os.environ.get('REDIS_URL')
 if not redis_url:
     raise ValueError("REDIS_URL environment variable not set.")
 
 redis_client = redis.from_url(redis_url)
+mentioned_players_key = 'mentioned_players'
 
 @tasks.loop(seconds=4)
 async def process_bingo_queue():
@@ -45,14 +45,14 @@ async def send_message_to_discord(player_name, message):
     if channel:
         player_id = await get_member_id(channel.guild, player_name)
         if player_id:
-            # Use Redis to check if player has been mentioned
-            player_key = f"mentioned_player_{player_id}"
-            has_been_mentioned = redis_client.get(player_key)
-            if has_been_mentioned:
-                mention = ""  # No mention if already mentioned
+            mention = f'<@{player_id}>'
+            # Check if the player has already been mentioned
+            if redis_client.sismember(mentioned_players_key, player_id):
+                # If player has been mentioned, do not send the message
+                print(f"Player '{player_name}' has already been mentioned. Skipping message.")
+                return
             else:
-                mention = f'<@{player_id}>'
-                redis_client.setex(player_key, 3600, "1")  # Set key with 1 hour expiration
+                redis_client.sadd(mentioned_players_key, player_id)  # Add player to mentioned set
             await channel.send(f'{mention} {message}')
             print(f"Message sent to channel {channel.id}: {mention} {message}")
         else:
@@ -74,10 +74,16 @@ async def get_member_id(guild, player_name):
             return member.id
     return None
 
+@tasks.loop(hours=1)
+async def reset_mentioned_players():
+    print("Resetting mentioned players list...")
+    redis_client.delete(mentioned_players_key)  # Clear the mentioned players set
+
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}')
     process_bingo_queue.start()
+    reset_mentioned_players.start()
 
 if __name__ == "__main__":
     client.run(DISCORD_TOKEN)
